@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="load()">
+    <h1>Sign up</h1>
+    <label for="firstname">First name</label>
+    <input type="text" id="firstname" name="firstname" placeholder="Enter first name"><br>
+
+    <label for="lastname">Last name</label>
+    <input type="text" id="lastname" name="lastname" placeholder="Enter last name"><br>
+
+    <label for="screen_name">Screen name</label>
+    <input type="text" id="screen_name" name="screen_name" placeholder="Enter screen name"><br>    
+
+    <label for="date_of_birth">Date of birth</label>
+    <input type="date" id="date_of_birth" name="date_of_birth"><br>    
+
+    <label for="gender">Gender</label>
+    <input type="radio" name="gender" id="male" value="Male">
+    <label for="Male">Male</label>
+    <input type="radio" name="gender" id="female" value="Female">
+    <label for="Female">Female</label>
+    <br>
+
+    <label for="country">Country</label>
+    <select name="country" id="country">
+        <option value="USA">USA</option>
+        <option value="Vietnam">Vietnam</option>
+        <option value="France">France</option>
+    </select>
+    <br>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" placeholder="Enter E-mail..."><br> 
+
+    <label for="phone">Phone</label>
+    <input type="number" id="phone" name="phone" placeholder="Enter Phone..."><br> 
+
+    <label for="password">Password</label>
+    <input type="password" id="password" name="password"><br> 
+
+    <label for="confirm_password">Confirm Password</label>
+    <input type="password" id="confirm_password" name="confirm_password"><br> 
+    <button onclick="signup()">Signup</button>
+</body>
+
+<script>
+    function load() {
+        var user = JSON.parse(localStorage.getItem("user"));
+        const {
+            firstname,
+            lastname,
+            screen_name,
+            date_of_birth,
+            gender,
+            country,
+            email,
+            phone,
+            password,
+            confirm_password
+        } = user
+
+        if (user !== null) {
+            if (confirm("Do you want to reload your info?")) {
+                document.querySelector("#firstname").value = firstname;
+                document.querySelector("#lastname").value = lastname;
+                document.querySelector("#screen_name").value = screen_name;
+                document.querySelector("#date_of_birth").value = date_of_birth;
+
+                if (gender === "Male") {
+                    document.querySelector("#male").checked = true;
+                } else {
+                    document.querySelector("#female").checked = true;
+                }
+
+                document.querySelector("#country").value = country;
+                document.querySelector("#email").value = email;
+                document.querySelector("#phone").value = phone;
+                document.querySelector("#password").value = password;
+                document.querySelector("#confirm_password").value = confirm_password;
+            }
+        }
+    }
+
+    function signup() {
+        let firstname = document.querySelector("#firstname").value;
+        let lastname = document.querySelector("#lastname").value;
+        let screen_name = document.querySelector("#screen_name").value;
+        let date_of_birth = document.querySelector("#date_of_birth").value;
+        let gender = document.querySelector('input[name="gender"]:checked').value;
+        let country = document.querySelector("#country").value;
+        let email = document.querySelector("#email").value;
+        let phone = document.querySelector("#phone").value;
+        let password = document.querySelector("#password").value;
+        let confirm_password = document.querySelector("#confirm_password").value;
+
+        if (password !== confirm_password) {
+            alert("2 passwords are not matched")
+        } else {
+            var user = {
+                firstname,
+                lastname,
+                screen_name,
+                date_of_birth,
+                gender,
+                country,
+                email,
+                phone,
+                password,
+                confirm_password
+            }
+
+            localStorage.setItem("user", JSON.stringify(user))
+        }
+    }
+</script>
+
+</html>
