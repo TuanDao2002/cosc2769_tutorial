@@ -21,10 +21,8 @@
     <input type="date" id="date_of_birth" name="date_of_birth"><br>    
 
     <label for="gender">Gender</label>
-    <input type="radio" name="gender" id="male" value="Male">
-    <label for="Male">Male</label>
-    <input type="radio" name="gender" id="female" value="Female">
-    <label for="Female">Female</label>
+    <input type="radio" name="gender" id="male" value="Male">Male
+    <input type="radio" name="gender" id="female" value="Female">Female
     <br>
 
     <label for="country">Country</label>
@@ -47,11 +45,15 @@
     <label for="confirm_password">Confirm Password</label>
     <input type="password" id="confirm_password" name="confirm_password"><br> 
     <button onclick="signup()">Signup</button>
+    <button onclick="showList()">Show list</button>
+    <div id="list"></div>
 </body>
 
 <script>
     function load() {
-        var user = JSON.parse(localStorage.getItem("user"));
+        var userList = JSON.parse(localStorage.getItem("user_list"));
+        if (userList === null) return;
+        var user = userList[userList.length - 1]
         const {
             firstname,
             lastname,
@@ -115,8 +117,39 @@
                 confirm_password
             }
 
-            localStorage.setItem("user", JSON.stringify(user))
+            var userList = JSON.parse(localStorage.getItem("user_list"))
+            if (userList === null) {
+                userList = []
+            }
+
+            userList.push(user)
+            localStorage.setItem("user_list", JSON.stringify(userList))
         }
+    }
+
+    function showList() {
+        var userList = JSON.parse(localStorage.getItem("user_list"))
+        if (userList === null) {
+            userList = []
+        }
+
+        let row = `<table><tr>
+            <td>Firstname</td>
+            <td>Lastname</td>
+            <td>Date of birth</td>
+            <td>Gender</td>
+            </tr>`
+        for (user of userList) {
+            row += `<tr>
+                <td>${user.firstname}</td>
+                <td>${user.lastname}</td>
+                <td>${user.date_of_birth}</td>
+                <td>${user.gender}</td>
+                </tr>`
+        }
+        row += "</table>"
+
+        document.querySelector("#list").innerHTML = row
     }
 </script>
 

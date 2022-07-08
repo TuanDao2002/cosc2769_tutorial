@@ -6,7 +6,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
+<style>
+    .myLabel {
+        width: 100px;
+        float: left;
+    }
+</style>
+
 <body>
-    <a href="page1.html">Page 1</a>
+    <h1>Guest book</h1>
+    <h3>Please leave your comment</h3>
+    <label for="name" class="myLabel">Name</label>
+    <input type="text" name="name" id="name"><br>
+
+    <label for="gender" class="myLabel">Gender</label>
+    <select name="gender" id="gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+    </select>
+    <br>
+
+    <label for="major" class="myLabel">Major</label>
+    <input type="radio" name="major" id="it" value="IT">IT
+    <input type="radio" name="major" id="se" value="SE">SE
+    <br>
+
+    <label for="comment" class="myLabel">Comment</label>
+    <textarea name="comment" id="comment" cols="30" rows="10"></textarea><br>
+    <button style="margin-left: 100px;">Send</button><br>
+
+    <canvas id="myCanvas" width="200" height="100" style="border:red 2px solid;"></canvas><br>
+
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#FF0000";
+        ctx.fillRect(0, 0, 150, 75);
+    </script>
 </body>
 </html>
