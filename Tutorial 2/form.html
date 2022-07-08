@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    label {
+        padding: 12px 12px 12px 0;
+        display: inline-block;
+    }
+
+    input[type=text],
+    select,
+    textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        resize: vertical;
+    }
+
+    .col-25 {
+        float: left;
+        width: 25%;
+        margin-top: 6px;
+    }
+
+    .col-75 {
+        float: left;
+        width: 75%;
+        margin-top: 6px;
+    }
+
+    /* Clear floats after the columns */
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    @media screen and (max-width: 600px) {
+        .col-25,
+        .col-75,
+        input[type=submit] {
+            width: 100%;
+            margin-top: 0;
+        }
+    }
+</style>
+
+<body>
+    <h2>Add new course</h2>
+    <form action="">
+        <div class="row">
+            <div class="col-25">
+                <label for="" class="form-label">Course name</label>
+            </div>
+            <div class="col-75">
+                <input type="text" name="name" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-25">
+                <label for="" class="form-label">Grade</label>
+            </div>
+            <div class="col-75">
+                <input type="text" name="grade" class="form-control">
+            </div>
+        </div>
+
+        <div class="row">
+            <button>Add</button>
+        </div>
+    </form>
+</body>
+
+</html>
